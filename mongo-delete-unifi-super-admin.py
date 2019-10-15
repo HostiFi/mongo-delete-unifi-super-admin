@@ -9,19 +9,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-u','--username', help='UniFi username of Super Admin to delete')
 args = parser.parse_args()
 
-randchoice = SystemRandom().choice
-
-def sha512_crypt(password, salt=None, rounds=None):
-    if salt is None:
-        salt = ''.join([randchoice(string.ascii_letters + string.digits)
-                        for _ in range(8)])
-
-    prefix = '$6$'
-    if rounds is not None:
-        rounds = max(1000, min(999999999, rounds or 5000))
-        prefix += 'rounds={0}$'.format(rounds)
-    return crypt.crypt(password, prefix + salt)
-
 if args.username is not None:
     print "Deleting UniFi Super Admin"
     print "Connecting to MongoDB..."
