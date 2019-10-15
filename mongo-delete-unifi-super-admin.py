@@ -22,7 +22,7 @@ if args.username is not None:
         if admin["name"] == args.username:
             admin_id = str(admin["_id"])
     print "Deleting Admin..."
-    mdb.admin.remove('name': args.username)
+    mdb.admin.remove({'name': args.username})
     for site in db_dump:
         site_id = str(site["_id"])
         site_ids.append(site_id)
