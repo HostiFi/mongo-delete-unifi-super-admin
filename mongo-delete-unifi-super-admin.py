@@ -19,8 +19,11 @@ if args.username is not None:
     db_dump = mdb.site.find()
     admin_list = mdb.admin.find()
     for admin in admin_list:
-        if admin["name"] == args.username:
-            admin_id = str(admin["_id"])
+        try:
+            if admin["name"] == args.username:
+                admin_id = str(admin["_id"])
+        except:
+            continue
     print "Deleting Admin..."
     mdb.admin.remove({'name': args.username})
     for site in db_dump:
